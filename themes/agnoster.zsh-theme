@@ -69,6 +69,7 @@ prompt_context() {
 
 # Git: branch/detached head, dirty status
 prompt_git() {
+  if [[ $(git rev-parse --show-toplevel) != $HOME ]]; then
   local ref dirty
   if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
     dirty=$(parse_git_dirty)
@@ -92,6 +93,7 @@ prompt_git() {
     vcs_info
     echo -n "${ref/refs\/heads\//± }${vcs_info_msg_0_}"
   fi
+fi
 }
 
 prompt_hg() {
