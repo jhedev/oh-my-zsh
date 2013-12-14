@@ -69,7 +69,7 @@ prompt_context() {
 
 # Git: branch/detached head, dirty status
 prompt_git() {
-  if [[ $(git rev-parse --show-toplevel) != $HOME ]]; then
+  if [[ $(git rev-parse --show-toplevel 2>/dev/null) != $HOME ]]; then
   local ref dirty
   if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
     dirty=$(parse_git_dirty)
